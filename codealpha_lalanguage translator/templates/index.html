@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BhashaBridge AI - Multilingual Translator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-theme">
+    
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-language"></i>
+            <h1>BhashaBridge <span>AI</span></h1>
+        </div>
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle Dark Mode">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </nav>
+
+    <main class="container">
+        
+        <div class="translator-wrapper">
+            
+            <!-- Controls Section (Languages and Swap) -->
+            <div class="controls">
+                <div class="select-container">
+                    <select id="source-lang">
+                        <option value="en" selected>English</option>
+                        <option value="hi">Hindi</option>
+                        <option value="te">Telugu</option>
+                        <option value="ta">Tamil</option>
+                        <option value="kn">Kannada</option>
+                        <option value="ml">Malayalam</option>
+                        <option value="auto">Auto Detect</option>
+                    </select>
+                </div>
+
+                <button id="swap-btn" class="swap-btn" title="Swap Languages">
+                    <i class="fa-solid fa-right-left"></i>
+                </button>
+
+                <div class="select-container">
+                    <select id="target-lang">
+                        <option value="hi">Hindi</option>
+                        <option value="en">English</option>
+                        <option value="te">Telugu</option>
+                        <option value="ta">Tamil</option>
+                        <option value="kn">Kannada</option>
+                        <option value="ml">Malayalam</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Text Areas Section -->
+            <div class="text-areas-container">
+                
+                <!-- Source Text Area -->
+                <div class="text-box source-box">
+                    <textarea id="source-text" placeholder="Type text to translate..." spellcheck="false"></textarea>
+                    
+                    <div class="box-footer">
+                        <div class="actions">
+                            <button id="mic-btn" class="icon-btn" title="Speech to Text">
+                                <i class="fa-solid fa-microphone"></i>
+                            </button>
+                            <span id="mic-status" class="status-text hidden">Listening...</span>
+                        </div>
+                        <div class="char-count">
+                            <span id="count">0</span> / 5000
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Target Text Area -->
+                <div class="text-box target-box">
+                    <div id="loader" class="loader-overlay hidden">
+                        <div class="spinner"></div>
+                        <span>Translating...</span>
+                    </div>
+                    
+                    <textarea id="target-text" placeholder="Translation will appear here..." readonly></textarea>
+                    
+                    <div class="box-footer">
+                        <div class="actions">
+                            <button id="speaker-btn" class="icon-btn" title="Text to Speech">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                            <button id="copy-btn" class="icon-btn" title="Copy to Clipboard">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="translate-btn-container">
+                <button id="translate-btn" class="primary-btn">
+                    <i class="fa-solid fa-language"></i> Translate Now
+                </button>
+            </div>
+            
+        </div>
+
+        <!-- History Section -->
+        <section class="history-section">
+            <div class="history-header">
+                <h2><i class="fa-solid fa-clock-rotate-left"></i> Recent Translations</h2>
+                <button id="clear-history-btn" class="text-btn">Clear All</button>
+            </div>
+            <div id="history-list" class="history-list">
+                <!-- History items will be injected here via JS -->
+                <div class="empty-state">No recent translations.</div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
